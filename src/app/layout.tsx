@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Rajdhani, Sora } from "next/font/google";
 import "./globals.css";
+import { furiousLogo } from "@/data/furiousLogo";
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -16,7 +17,8 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   title: "Furious Garage | Estética Automotiva",
-  description: "Limpeza, higienização e estética automotiva premium com agendamento online."
+  description: "Limpeza, higienização e estética automotiva premium com agendamento online.",
+  icons: { icon: furiousLogo, shortcut: furiousLogo, apple: furiousLogo }
 };
 
 export default function RootLayout({

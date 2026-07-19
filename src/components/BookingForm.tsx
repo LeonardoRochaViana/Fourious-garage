@@ -136,6 +136,24 @@ export default function BookingForm() {
       setSummary(form);
       setOccupiedTimes((current) => Array.from(new Set([...current, form.time])));
       setError("");
+
+      const whatsappMessage = encodeURIComponent(
+        [
+          "Olá, Furious Garage! Fiz uma reserva pelo site.",
+          "",
+          `Cliente: ${form.name}`,
+          `WhatsApp: ${form.phone}`,
+          `Veículo: ${form.vehicleModel}${form.vehiclePlate ? ` - ${form.vehiclePlate}` : ""}`,
+          `Serviço: ${form.service}`,
+          `Data: ${form.date.split("-").reverse().join("/")}`,
+          `Horário: ${form.time}`,
+          form.notes ? `Observações: ${form.notes}` : "",
+          "",
+          "Aguardo a confirmação."
+        ].filter(Boolean).join("\n")
+      );
+
+      window.open(`https://wa.me/5518996539169?text=${whatsappMessage}`, "_blank", "noopener,noreferrer");
     } catch (submitError) {
       setSummary(null);
       setError(submitError instanceof Error ? submitError.message : "Não foi possível confirmar o agendamento.");

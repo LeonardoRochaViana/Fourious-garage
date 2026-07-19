@@ -1,10 +1,10 @@
 import { Clock, Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
 
 const contactItems = [
-  { label: "WhatsApp", value: "(00) 00000-0000", icon: Phone },
-  { label: "Instagram", value: "@furiousgarage", icon: Instagram },
-  { label: "Endereço", value: "Informe o endereço da Furious Garage", icon: MapPin },
-  { label: "Horário", value: "Segunda a sábado, das 08h às 18h", icon: Clock }
+  { label: "WhatsApp", value: "(18) 99653-9169", icon: Phone },
+  { label: "Instagram", value: "@furiousgaragebgi", icon: Instagram },
+  { label: "Endereço", value: "Birigui e região", icon: MapPin },
+  { label: "Horário", value: "Consulte os horários disponíveis", icon: Clock }
 ];
 
 export default function Contact() {
@@ -18,7 +18,7 @@ export default function Contact() {
             Tire dúvidas, confirme disponibilidade ou chame direto no WhatsApp para alinhar o melhor serviço para o seu carro.
           </p>
           <a
-            href="https://wa.me/5500000000000"
+            href="https://wa.me/5518996539169"
             className="mt-8 inline-flex items-center gap-2 bg-garage-red px-6 py-4 text-sm font-bold uppercase text-white transition hover:bg-red-700"
           >
             <MessageCircle size={18} />

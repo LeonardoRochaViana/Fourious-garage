@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CalendarDays, Menu, X } from "lucide-react";
+import { furiousLogo } from "@/data/furiousLogo";
 
 const navItems = [
   { label: "Início", href: "#inicio" },
@@ -18,8 +19,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-garage-line bg-garage-black/92 backdrop-blur-xl">
       <div className="section-shell flex min-h-20 items-center justify-between gap-6">
         <a href="#inicio" className="flex items-center gap-3" aria-label="Furious Garage">
-          <span className="grid h-12 w-12 place-items-center border border-garage-red bg-garage-panel shadow-redGlow">
-            <span className="font-display text-2xl font-bold leading-none text-white">FG</span>
+          <span className="h-14 w-14 overflow-hidden border border-garage-red bg-black shadow-redGlow">
+            <img src={furiousLogo} alt="" className="h-full w-full object-cover" />
           </span>
           <span>
             <span className="block font-display text-2xl font-bold uppercase tracking-normal">Furious Garage</span>

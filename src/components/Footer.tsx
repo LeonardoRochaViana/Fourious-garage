@@ -21,7 +21,7 @@ export default function Footer() {
             </a>
           ))}
         </nav>
-        <p className="text-sm text-garage-text">© 2026 Furious Garage. Todos os direitos reservados.</p>
+        <div className="text-sm text-garage-text"><p>© 2026 Furious Garage. Todos os direitos reservados.</p><a href="/admin" className="mt-2 inline-block transition hover:text-white">Área administrativa</a></div>
       </div>
     </footer>
   );

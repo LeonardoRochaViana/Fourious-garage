@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { CalendarCheck, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import type { BookingFormState, BookingSummary } from "@/types/booking";
 
 const initialForm: BookingFormState = {
@@ -177,13 +177,8 @@ export default function BookingForm() {
           <p className="text-sm font-bold uppercase text-garage-red">Agendamento</p>
           <h2 className="red-line mt-2 font-display text-4xl font-bold uppercase sm:text-5xl">Reserve seu horário</h2>
           <p className="mt-7 text-garage-text">
-            Escolha o serviço, informe os dados do veículo e selecione apenas horários livres. As reservas são verificadas e salvas no Neon Postgres com Prisma.
+            Escolha o serviço, informe os dados do veículo e selecione um dos horários disponibilizados pela Furious Garage.
           </p>
-          <div className="mt-8 border border-garage-line bg-garage-panel p-5">
-            <CalendarCheck className="mb-4 text-garage-red" size={30} />
-            <p className="font-display text-2xl font-bold uppercase">Horários cadastrados</p>
-            <p className="mt-2 text-sm leading-6 text-garage-text">08:00, 09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 16:00 e 17:00.</p>
-          </div>
         </div>
 
         <div className="border border-garage-line bg-garage-panel p-5 sm:p-7">

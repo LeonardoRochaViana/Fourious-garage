@@ -2,8 +2,6 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { CalendarCheck, CheckCircle2 } from "lucide-react";
-import { availableTimeSlots } from "@/data/availability";
-import { services } from "@/data/services";
 import type { BookingFormState, BookingSummary } from "@/types/booking";
 
 const initialForm: BookingFormState = {
@@ -27,8 +25,14 @@ export default function BookingForm() {
   const [error, setError] = useState("");
   const [summary, setSummary] = useState<BookingSummary | null>(null);
   const [occupiedTimes, setOccupiedTimes] = useState<string[]>([]);
+  const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
+  const [services, setServices] = useState<Array<{ id: string; name: string }>>([]);
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/catalog").then((response) => response.json()).then((data) => setServices(data.services ?? [])).catch(() => setServices([]));
+  }, []);
 
   const slots = useMemo(
     () =>
@@ -44,6 +48,7 @@ export default function BookingForm() {
   useEffect(() => {
     if (!form.date) {
       setOccupiedTimes([]);
+      setAvailableTimeSlots([]);
       return;
     }
 
@@ -54,10 +59,13 @@ export default function BookingForm() {
       setError("");
 
       try {
-        const response = await fetch(`/api/bookings/occupied?date=${encodeURIComponent(form.date)}`, {
-          signal: controller.signal
-        });
+        const [response, catalogResponse] = await Promise.all([
+          fetch(`/api/bookings/occupied?date=${encodeURIComponent(form.date)}`, { signal: controller.signal }),
+          fetch(`/api/catalog?date=${encodeURIComponent(form.date)}`, { signal: controller.signal })
+        ]);
         const data = (await response.json()) as OccupiedSlotsResponse;
+        const catalog = await catalogResponse.json() as { availability?: Array<{ time: string }> };
+        setAvailableTimeSlots((catalog.availability ?? []).map((item) => item.time));
 
         if (!response.ok) {
           throw new Error(data.message ?? "Não foi possível buscar horários ocupados.");
